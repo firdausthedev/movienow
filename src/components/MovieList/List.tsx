@@ -1,3 +1,4 @@
+import { Sort } from "../Sort";
 import MovieCard from "./Card";
 import { MoviesResponse } from "@/lib/types";
 
@@ -12,6 +13,7 @@ async function MovieList({
     <section id="movies" className="container py-10">
       <div className="flex justify-between">
         <ListHeading value={heading} />
+        <Sort />
       </div>
 
       {movies.results.length > 0 ? (
