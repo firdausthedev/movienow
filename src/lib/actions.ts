@@ -1,4 +1,10 @@
-import { Detail, GenreResponse, MoviesResponse, Video } from "./types";
+import {
+  Detail,
+  GenreResponse,
+  MovieCredits,
+  MoviesResponse,
+  Video,
+} from "./types";
 
 const API = `&api_key=${process.env.TMDB_API_KEY}`;
 const DEFAULT_SORT = "&DEFAULT_SORT_by=popularity.desc";
@@ -73,4 +79,13 @@ export const getVideo = async (id: string) => {
   );
   const data = await res.json();
   return data as Video;
+};
+
+export const getMoviesByActorId = async (id: string, page: string = "1") => {
+  const pageQuery = `&page=${page}`;
+  const res = await fetch(
+    `https://api.themoviedb.org/3/person/${id}/movie_credits?${API + pageQuery + FILTER}`,
+  );
+  const data = await res.json();
+  return data as MovieCredits;
 };
