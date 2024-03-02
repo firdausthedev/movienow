@@ -1,5 +1,5 @@
 import MovieList from "@/components/MovieList/List";
-import { getMovies } from "@/lib/actions";
+import { getSearch } from "@/lib/actions";
 
 export default async function Search({
   searchParams,
@@ -9,7 +9,7 @@ export default async function Search({
   const search = searchParams["query"] ?? "";
   const pageNumber = searchParams["page"] ?? "1";
 
-  const movies = await getMovies("53", "Popularity", pageNumber);
+  const movies = await getSearch(search, pageNumber);
   return (
     <main>
       <MovieList

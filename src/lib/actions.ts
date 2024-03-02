@@ -48,3 +48,13 @@ export const getMoviesCarousel = async (genre: string) => {
   const data: MoviesResponse = await res.json();
   return data.results.slice(0, 4);
 };
+
+export const getSearch = async (query: string, page: string) => {
+  const pageQuery = `&page=${page}`;
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/movie?query=${query + pageQuery + FILTER + API}`,
+  );
+  const data = await res.json();
+  return data as MoviesResponse;
+};
