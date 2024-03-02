@@ -29,7 +29,7 @@ function CarousellItem({
 
         <p className="text-base font-normal">{movie.overview}</p>
         <Link
-          href="/"
+          href={{ query: { detail: movie.id } }}
           className="rounded-lg bg-white p-5 text-base font-semibold text-black transition-transform duration-150 hover:scale-105 hover:text-gray"
         >
           More Details
