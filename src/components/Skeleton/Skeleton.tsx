@@ -1,3 +1,12 @@
+export function CarousellSkeleton() {
+  return (
+    <div className="mb-10 flex flex-col items-center gap-5">
+      <div className="container h-lg animate-pulse rounded-xl bg-gray" />
+      <div className="flex h-4 w-40 animate-pulse rounded-sm bg-gray" />
+    </div>
+  );
+}
+
 export function MovieListSkeleton({ amount }: { amount: number }) {
   return (
     <div className="container py-10">

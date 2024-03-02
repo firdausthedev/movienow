@@ -11,3 +11,9 @@ export const getMovies = async () => {
   const data = movies;
   return data as MoviesResponse;
 };
+
+export const getMoviesCarousel = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const data: MoviesResponse = movies;
+  return data.results.slice(0, 4);
+};

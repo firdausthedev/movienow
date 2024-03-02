@@ -24,6 +24,9 @@ const config: Config = {
       fontSize: {
         semiXl: "1.125rem", // 18px
       },
+      spacing: {
+        lg: "36.875rem", //590px
+      },
     },
   },
   plugins: [],
