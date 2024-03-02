@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer";
 import DetailModal from "@/components/Detail/Detail";
+import { Suspense } from "react";
 
 const primary = Merriweather_Sans({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({
       <body className={`${primary.variable} bg-dark font-primary text-white`}>
         <Navbar />
         {children}
-        <DetailModal />
+        <Suspense>
+          <DetailModal />
+        </Suspense>
         <Footer />
       </body>
     </html>
