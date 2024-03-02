@@ -33,12 +33,12 @@ function SearchBox() {
     router.push(`/search${query}`);
   }
   return (
-    <div className="absolute left-0 top-12 z-10 hidden w-full rounded-sm bg-darkBlue p-7  peer-has-[:checked]:block">
+    <div className="absolute left-0 top-12 z-10 hidden w-full rounded-sm bg-darkBlue p-7 peer-has-[:checked]:block">
       <div className="relative">
         <input
           type="text"
           autoComplete="off"
-          className="h-20 w-full rounded-md border-none bg-charcoal pl-16 pr-6 text-xl font-semibold text-white"
+          className="h-16 w-full rounded-md border-none bg-charcoal pl-12 pr-6 font-semibold text-white md:h-20 md:pl-16 md:text-xl "
           placeholder="Search"
           ref={inputRef}
           onKeyUp={(e) => {
@@ -58,7 +58,7 @@ function SearchBox() {
             }
           }}
         >
-          <FaMagnifyingGlass className="pointer-events-none text-3xl text-gray" />
+          <FaMagnifyingGlass className="pointer-events-none text-gray md:text-3xl" />
         </button>
       </div>
     </div>

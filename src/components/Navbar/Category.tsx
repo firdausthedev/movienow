@@ -50,7 +50,7 @@ export async function DropDown() {
   );
 }
 
-export function GenreBtn({ value, id }: { value: string; id: number }) {
+function GenreBtn({ value, id }: { value: string; id: number }) {
   return (
     <li className="flex">
       <Link

@@ -32,6 +32,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
   return (
     <>
       <Link
+        scroll={false}
         href={
           pathname + "?" + createQueryString("detail", `${movie.id.toString()}`)
         }

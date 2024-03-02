@@ -51,7 +51,7 @@ export default function DetailModal() {
   return (
     <div
       aria-label="modal"
-      className="fixed inset-0 z-40 flex size-full items-center justify-center bg-slate-800/15 shadow-md backdrop-blur-sm "
+      className="fixed inset-0 z-40 flex size-full items-center justify-center bg-slate-800/15 px-5 shadow-md backdrop-blur-sm md:px-0 "
     >
       <div
         aria-label="modal-content"

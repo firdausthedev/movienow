@@ -13,8 +13,8 @@ async function MovieList({
   heading: string;
 }) {
   return (
-    <section id="movies" className="container py-10">
-      <div className="flex justify-between">
+    <section id="movies" className="container py-5 md:py-10">
+      <div className="flex items-center justify-between">
         <ListHeading value={heading} />
         <Sort />
       </div>
@@ -47,11 +47,13 @@ async function MovieList({
 }
 
 export function ListHeading({ value }: { value: string }) {
-  return <h2 className="text-xl font-semibold">{value}</h2>;
+  return <h2 className="text-base font-semibold md:text-xl">{value}</h2>;
 }
 
 export function ListContainer({ children }: { children: React.ReactNode }) {
-  return <div className="mt-4 grid grid-cols-5 gap-4">{children}</div>;
+  return (
+    <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-5">{children}</div>
+  );
 }
 
 export function EmptyListMessage() {
