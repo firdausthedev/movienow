@@ -43,6 +43,6 @@ export const movies = {
       vote_count: 217,
     },
   ],
-  total_pages: 42742,
-  total_results: 854839,
+  total_pages: 2,
+  total_results: 40,
 };

@@ -1,11 +1,14 @@
 import { Sort } from "../Sort";
 import MovieCard from "./Card";
 import { MoviesResponse } from "@/lib/types";
+import PaginateBtn from "./Pagination";
 
 async function MovieList({
+  page,
   movies,
   heading,
 }: {
+  page: string;
   movies: MoviesResponse;
   heading: string;
 }) {
@@ -23,6 +26,18 @@ async function MovieList({
               return <MovieCard key={movie.id} movie={movie} />;
             })}
           </ListContainer>
+          <div className="mt-10 flex justify-between">
+            <PaginateBtn
+              page={page}
+              isNext={false}
+              totalPage={movies.total_pages}
+            />
+            <PaginateBtn
+              page={page}
+              isNext={true}
+              totalPage={movies.total_pages}
+            />
+          </div>
         </>
       ) : (
         <EmptyListMessage />
