@@ -62,7 +62,7 @@ export default function DetailModal() {
             onClick={() => {
               const params = new URLSearchParams(searchParams!);
               params.delete("detail");
-              replace(`${pathname}?${params.toString()}`);
+              replace(`${pathname}?${params.toString()}`, { scroll: false });
             }}
             aria-label="close-modal"
             className="flex w-fit rounded-full p-3 transition-colors duration-200 ease-in-out hover:bg-white/70"
