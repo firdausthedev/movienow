@@ -3,6 +3,7 @@ import { Merriweather_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer";
+import DetailModal from "@/components/Detail/Detail";
 
 const primary = Merriweather_Sans({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={`${primary.variable} bg-dark font-primary text-white`}>
         <Navbar />
         {children}
+        <DetailModal />
         <Footer />
       </body>
     </html>

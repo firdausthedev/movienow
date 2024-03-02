@@ -22,3 +22,23 @@ export function MovieListSkeleton({ amount }: { amount: number }) {
     </div>
   );
 }
+
+export default function DetailSkeleton() {
+  return (
+    <div
+      aria-label="modal"
+      className="fixed inset-0 z-40 flex size-full items-center justify-center bg-slate-800/15 shadow-md backdrop-blur-sm "
+    >
+      <div
+        aria-label="modal-content"
+        className="flex h-3/4 w-lg flex-col gap-3 rounded-xl bg-black p-4"
+      >
+        <div className="flex justify-end">
+          <div className="h-4 w-8 animate-pulse rounded-sm bg-gray" />
+        </div>
+        <div className="size-full animate-pulse rounded-sm bg-gray" />
+        <div className="size-full animate-pulse rounded-sm bg-gray" />
+      </div>
+    </div>
+  );
+}

@@ -1,5 +1,9 @@
+"use client";
+
+import { useCallback } from "react";
 import { Movie } from "@/lib/types";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import StarRating from "../Rating/Star";
 
 const MovieCard = ({ movie }: { movie: Movie }) => {
@@ -12,10 +16,25 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
       ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
       : null;
 
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams!.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
+
   return (
     <>
       <Link
-        href="/"
+        href={
+          pathname + "?" + createQueryString("detail", `${movie.id.toString()}`)
+        }
         aria-label="movie"
         className={`group relative h-40 w-full cursor-pointer overflow-hidden rounded-md 
         ${!backdrop ? "bg-gray/25" : "bg-cover bg-center bg-no-repeat "}`}

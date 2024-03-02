@@ -1,4 +1,4 @@
-import { GenreResponse, MoviesResponse } from "./types";
+import { Detail, GenreResponse, MoviesResponse, Video } from "./types";
 
 const API = `&api_key=${process.env.TMDB_API_KEY}`;
 const DEFAULT_SORT = "&DEFAULT_SORT_by=popularity.desc";
@@ -57,4 +57,20 @@ export const getSearch = async (query: string, page: string) => {
   );
   const data = await res.json();
   return data as MoviesResponse;
+};
+
+export const getDetail = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?${API}&append_to_response=credits`,
+  );
+  const data = await res.json();
+  return data as Detail;
+};
+
+export const getVideo = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?${API}`,
+  );
+  const data = await res.json();
+  return data as Video;
 };

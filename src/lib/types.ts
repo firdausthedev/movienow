@@ -30,3 +30,36 @@ export type MoviesResponse = {
   total_pages: number;
   total_results: number;
 };
+
+export type Detail = {
+  backdrop_path: string;
+  genres: Genre[];
+  id: number;
+  overview: string;
+  poster_path: string | null;
+  release_date: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+  credits: {
+    cast: {
+      id: number;
+      name: string;
+      cast_id: number;
+    }[];
+  };
+};
+
+export type MovieCredits = {
+  cast: Movie[];
+  id: number;
+};
+
+export type Video = {
+  id: number;
+  results: {
+    key: string;
+    site: string;
+    type: string;
+  }[];
+};
