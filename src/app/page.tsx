@@ -8,8 +8,10 @@ export default async function Home({
   searchParams: { [key: string]: string | undefined };
 }) {
   const pageNumber = searchParams["page"] ?? "1";
-  const moviesCarousel = await getMoviesCarousel();
-  const movieList = await getMovies();
+  const genre = searchParams["genre"] ?? "";
+  const select = searchParams["select"] ?? "";
+  const moviesCarousel = await getMoviesCarousel(genre);
+  const movieList = await getMovies(genre, select, pageNumber);
   return (
     <main>
       <Carousell movies={moviesCarousel} />

@@ -9,7 +9,7 @@ export default async function Search({
   const search = searchParams["query"] ?? "";
   const pageNumber = searchParams["page"] ?? "1";
 
-  const movies = await getMovies();
+  const movies = await getMovies("53", "Popularity", pageNumber);
   return (
     <main>
       <MovieList
