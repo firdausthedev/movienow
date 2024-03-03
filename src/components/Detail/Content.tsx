@@ -3,8 +3,10 @@ import StarRating from "../Rating/Star";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPlay } from "react-icons/fa6";
+import styles from "./content.module.css";
+import Recommendation from "./Recommendation";
 
-export function Content({ movie, video }: { movie: Detail; video: Video }) {
+export function Content({ movie }: { movie: Detail }) {
   const poster = movie.poster_path
     ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
     : movie.backdrop_path
@@ -33,9 +35,10 @@ export function Content({ movie, video }: { movie: Detail; video: Video }) {
         )}
       </div>
       <p className="text-sm font-light">{movie.overview}</p>
-      <Trailer video={video} />
+      <Trailer video={movie.videos} />
       <Genre movie={movie} />
       <Casting movie={movie} />
+      <Recommendation recommendations={movie.recommendations} max={5} />
     </div>
   );
 }
@@ -57,7 +60,7 @@ function Casting({ movie }: { movie: Detail }) {
   if (movie.credits.cast.length > 0) {
     return (
       <>
-        <h3 className="text-base font-semibold">Top Casts</h3>
+        <h3 className={styles.header}>Top Casts</h3>
         <div className="flex flex-wrap gap-4">
           {movie.credits.cast.slice(0, 5).map((cast, index) => {
             return (
@@ -66,8 +69,9 @@ function Casting({ movie }: { movie: Detail }) {
                   pathname: "/search",
                   query: { person: cast.id, name: cast.name },
                 }}
-                className="flex rounded-md bg-slate-800 p-2 text-sm transition-colors duration-150 hover:text-gray"
+                className={styles.customLink}
                 key={index}
+                prefetch={false}
               >
                 {cast.name}
               </Link>
@@ -83,13 +87,13 @@ function Genre({ movie }: { movie: Detail }) {
   if (movie.genres.length <= 0) return null;
   return (
     <>
-      <h3 className="text-base font-semibold">Genres</h3>
+      <h3 className={styles.header}>Genres</h3>
       <div className="flex flex-wrap gap-4">
         {movie.genres.map((genre, index) => {
           return (
             <Link
               key={index}
-              className="flex rounded-md bg-slate-800 p-2 text-sm transition-colors duration-150 hover:text-gray"
+              className={styles.customLink}
               href={{ pathname: "/", query: { genre: genre.id } }}
               prefetch={false}
             >

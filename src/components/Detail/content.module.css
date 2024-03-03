@@ -1,0 +1,7 @@
+.customLink {
+  @apply flex rounded-md bg-slate-800 p-2 text-sm transition-colors duration-150 hover:text-gray;
+}
+
+.header {
+  @apply text-base font-semibold;
+}

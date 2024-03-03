@@ -48,6 +48,8 @@ export type Detail = {
       cast_id: number;
     }[];
   };
+  videos: Video;
+  recommendations: MoviesResponse;
 };
 
 export type MovieCredits = {

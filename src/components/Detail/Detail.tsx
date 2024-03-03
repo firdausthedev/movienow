@@ -3,13 +3,12 @@
 import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Detail, Video } from "@/lib/types";
+import { Detail } from "@/lib/types";
 import DetailSkeleton from "../Skeleton/Skeleton";
 import { Content } from "./Content";
 
 export default function DetailModal() {
   const [movie, setMovie] = useState<Detail | null>(null);
-  const [video, setVideo] = useState<Video | null>(null);
   const [error, setError] = useState("");
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -20,13 +19,10 @@ export default function DetailModal() {
     async function fetchMovie() {
       try {
         const res = await fetch(`/api/detail/${detail}`);
-        const { data } = await res.json();
-        if (data.movie.status_code !== 34) {
-          setMovie(data.movie);
-          setVideo(data.video);
+        const movie = await res.json();
+        if (movie.status_code !== 34) {
+          setMovie(movie);
         } else {
-          console.log(data);
-
           setError("Failed to fetch movie.");
         }
       } catch (error) {
@@ -35,7 +31,6 @@ export default function DetailModal() {
     }
     if (detail) {
       setMovie(null);
-      setVideo(null);
       setError("");
       fetchMovie();
     }
@@ -47,7 +42,6 @@ export default function DetailModal() {
   if (!movie && !error) {
     return <DetailSkeleton />;
   }
-
   return (
     <div
       aria-label="modal"
@@ -72,7 +66,7 @@ export default function DetailModal() {
         </div>
 
         {error && <p className="text-white">{error}</p>}
-        {movie && video && <Content movie={movie} video={video} />}
+        {movie && movie && <Content movie={movie} />}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getDetail, getVideo } from "@/lib/actions";
-import { Detail, Video } from "@/lib/types";
+import { getDetail } from "@/lib/actions";
+import { Detail } from "@/lib/types";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,8 +12,7 @@ export default async function handler(
   }
   try {
     const movie: Detail = await getDetail(id);
-    const video: Video = await getVideo(id);
-    res.status(200).json({ data: { movie, video } });
+    res.status(200).json(movie);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }

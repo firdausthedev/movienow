@@ -1,13 +1,7 @@
-import {
-  Detail,
-  GenreResponse,
-  MovieCredits,
-  MoviesResponse,
-  Video,
-} from "./types";
+import { Detail, GenreResponse, MovieCredits, MoviesResponse } from "./types";
 
 const API = `&api_key=${process.env.TMDB_API_KEY}`;
-const DEFAULT_SORT = "&DEFAULT_SORT_by=popularity.desc";
+const DEFAULT_SORT = "&sort_by=popularity.desc";
 const FILTER = "&include_adult=false&include_video=false&language=en-US&";
 
 export const getGenres = async () => {
@@ -67,18 +61,10 @@ export const getSearch = async (query: string, page: string) => {
 
 export const getDetail = async (id: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?${API}&append_to_response=credits`,
+    `https://api.themoviedb.org/3/movie/${id}?${API}&append_to_response=credits,videos,similar,recommendations`,
   );
   const data = await res.json();
   return data as Detail;
-};
-
-export const getVideo = async (id: string) => {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?${API}`,
-  );
-  const data = await res.json();
-  return data as Video;
 };
 
 export const getMoviesByActorId = async (id: string, page: string = "1") => {
