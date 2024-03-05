@@ -4,8 +4,8 @@ import MovieList, {
   ListContainer,
   ListHeading,
 } from "@/components/MovieList/List";
-import { getMoviesByActorId, getSearch } from "@/lib/actions";
-import { Movie } from "@/lib/types";
+import { getMoviesByPersonId, getSearch } from "@/lib/actions";
+import { Movie, Role } from "@/lib/types";
 
 function MoviesByActor({ movies, name }: { movies: Movie[]; name: string }) {
   return (
@@ -33,11 +33,18 @@ export default async function Search({
   const pageNumber = searchParams["page"] ?? "1";
   const person = searchParams["person"] ?? "";
   const name = searchParams["name"] ?? "";
+  const roleOption = searchParams["role"] ?? "";
 
   let movies;
 
   if (person) {
-    movies = await getMoviesByActorId(person, pageNumber);
+    movies = await getMoviesByPersonId(person, pageNumber);
+    if (roleOption === Role.Director) {
+      const directedMovies = movies.crew.filter((movie) => {
+        return movie.job === Role.Director;
+      });
+      return <MoviesByActor movies={directedMovies} name={name} />;
+    }
     return <MoviesByActor movies={movies.cast.slice(0, 40)} name={name} />;
   } else {
     movies = await getSearch(search, pageNumber);

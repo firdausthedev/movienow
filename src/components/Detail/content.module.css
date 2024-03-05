@@ -5,3 +5,7 @@
 .header {
   @apply text-base font-semibold;
 }
+
+.customLinkContainer {
+  @apply flex flex-wrap gap-4;
+}

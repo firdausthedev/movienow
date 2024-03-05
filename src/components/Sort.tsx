@@ -2,13 +2,14 @@
 
 import { FaAngleDown } from "react-icons/fa6";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { SortSelection } from "@/lib/types";
 
 export function Sort() {
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const sort = searchParams?.get("sort");
-  const select = searchParams?.get("select") ?? "Popularity";
+  const select = searchParams?.get("select") ?? SortSelection.Popularity;
 
   function handleSortClick() {
     const params = new URLSearchParams(searchParams!);
@@ -39,9 +40,9 @@ export function Sort() {
         className={`absolute z-10 mt-3 w-36 divide-y rounded-lg bg-slate-800 shadow ${sort ? "block" : "hidden"}`}
       >
         <ul className="py-2 text-sm" aria-labelledby="sort-menu">
-          <Selection value="Popularity" />
-          <Selection value="Recent" />
-          <Selection value="Rating" />
+          <Selection value={SortSelection.Popularity} />
+          <Selection value={SortSelection.Recent} />
+          <Selection value={SortSelection.Rating} />
         </ul>
       </div>
     </div>

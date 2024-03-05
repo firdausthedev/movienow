@@ -1,4 +1,4 @@
-import { Detail, Video } from "@/lib/types";
+import { Detail, Video, Role } from "@/lib/types";
 import StarRating from "../Rating/Star";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,6 +37,7 @@ export function Content({ movie }: { movie: Detail }) {
       <p className="text-sm font-light">{movie.overview}</p>
       <Trailer video={movie.videos} />
       <Genre movie={movie} />
+      <Director crew={movie.credits.crew} />
       <Casting movie={movie} />
       <Recommendation recommendations={movie.recommendations} max={5} />
     </div>
@@ -61,13 +62,17 @@ function Casting({ movie }: { movie: Detail }) {
     return (
       <>
         <h3 className={styles.header}>Top Casts</h3>
-        <div className="flex flex-wrap gap-4">
+        <div className={styles.customLinkContainer}>
           {movie.credits.cast.slice(0, 5).map((cast, index) => {
             return (
               <Link
                 href={{
                   pathname: "/search",
-                  query: { person: cast.id, name: cast.name },
+                  query: {
+                    person: cast.id,
+                    name: cast.name,
+                    role: Role.Acting,
+                  },
                 }}
                 className={styles.customLink}
                 key={index}
@@ -88,7 +93,7 @@ function Genre({ movie }: { movie: Detail }) {
   return (
     <>
       <h3 className={styles.header}>Genres</h3>
-      <div className="flex flex-wrap gap-4">
+      <div className={styles.customLinkContainer}>
         {movie.genres.map((genre, index) => {
           return (
             <Link
@@ -130,3 +135,42 @@ function Trailer({ video }: { video: Video }) {
     </a>
   );
 }
+
+const Director = ({
+  crew,
+}: {
+  crew: { name: string; job: string; id: number }[];
+}) => {
+  const directors = crew
+    .slice(0, 50)
+    .filter((person) => person.job === "Director");
+  if (directors.length <= 0) return null;
+
+  return (
+    <>
+      <h3 className={styles.header}>Director</h3>
+      <div className={styles.customLinkContainer}>
+        {directors.map((director, index) => {
+          return (
+            <Link
+              href={{
+                pathname: "/search",
+                query: {
+                  person: director.id,
+                  role: Role.Director,
+
+                  name: director.name,
+                },
+              }}
+              className={styles.customLink}
+              key={index}
+              prefetch={false}
+            >
+              {director.name}
+            </Link>
+          );
+        })}
+      </div>
+    </>
+  );
+};

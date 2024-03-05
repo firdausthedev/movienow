@@ -1,4 +1,10 @@
-import { Detail, GenreResponse, MovieCredits, MoviesResponse } from "./types";
+import {
+  Detail,
+  GenreResponse,
+  MovieCredits,
+  MoviesResponse,
+  SortSelection,
+} from "./types";
 
 const API = `&api_key=${process.env.TMDB_API_KEY}`;
 const DEFAULT_SORT = "&sort_by=popularity.desc";
@@ -20,13 +26,13 @@ export const getMovies = async (
   const genres = genre ? `&with_genres=${genre}` : "";
   let sort;
   if (option) {
-    if (option === "Popularity") {
+    if (option === SortSelection.Popularity) {
       sort = DEFAULT_SORT;
     }
-    if (option === "Rating") {
+    if (option === SortSelection.Rating) {
       sort = "&sort_by=vote_average.desc&vote_count.gte=10";
     }
-    if (option === "Recent") {
+    if (option === SortSelection.Recent) {
       sort = "&sort_by=release_date.desc";
     }
   } else {
@@ -61,13 +67,13 @@ export const getSearch = async (query: string, page: string) => {
 
 export const getDetail = async (id: string) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?${API}&append_to_response=credits,videos,similar,recommendations`,
+    `https://api.themoviedb.org/3/movie/${id}?${API}&append_to_response=credits,videos,recommendations`,
   );
   const data = await res.json();
   return data as Detail;
 };
 
-export const getMoviesByActorId = async (id: string, page: string = "1") => {
+export const getMoviesByPersonId = async (id: string, page: string = "1") => {
   const pageQuery = `&page=${page}`;
   const res = await fetch(
     `https://api.themoviedb.org/3/person/${id}/movie_credits?${API + pageQuery + FILTER}`,

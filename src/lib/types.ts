@@ -47,6 +47,11 @@ export type Detail = {
       name: string;
       cast_id: number;
     }[];
+    crew: {
+      id: number;
+      name: string;
+      job: string;
+    }[];
   };
   videos: Video;
   recommendations: MoviesResponse;
@@ -54,8 +59,15 @@ export type Detail = {
 
 export type MovieCredits = {
   cast: Movie[];
+  crew: MovieCasts[];
   id: number;
 };
+
+export interface MovieCasts extends Movie {
+  credit_id: string;
+  department: string;
+  job: string;
+}
 
 export type Video = {
   id: number;
@@ -65,3 +77,14 @@ export type Video = {
     type: string;
   }[];
 };
+
+export enum Role {
+  Acting = "Acting",
+  Director = "Director",
+}
+
+export enum SortSelection {
+  Popularity = "Popularity",
+  Recent = "Recent",
+  Rating = "Rating",
+}

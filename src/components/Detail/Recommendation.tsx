@@ -31,7 +31,7 @@ export default function Recommendation({
   return (
     <div className="flex flex-col gap-2">
       <h3 className={styles.header}>Recommended Movies</h3>
-      <div className="flex flex-wrap gap-4">
+      <div className={styles.customLinkContainer}>
         {recommendations.results.slice(0, max).map((movie, index) => {
           const shortedTitle =
             movie.title.length > 50
