@@ -48,6 +48,7 @@ function Poster({ poster }: { poster: string | null }) {
   if (!poster) return null;
   return (
     <Image
+      unoptimized
       alt="movie-poster"
       className="mx-auto"
       src={poster}

@@ -28,6 +28,7 @@ export function Sort() {
       <button
         onClick={handleSortClick}
         id="sort-menu"
+        aria-haspopup="true"
         data-dropdown-toggle="dropdown"
         className="flex w-36 items-center justify-between rounded-md bg-slate-800 p-2 text-sm hover:text-gray"
         type="button"
@@ -39,17 +40,22 @@ export function Sort() {
         id="dropdown"
         className={`absolute z-10 mt-3 w-36 divide-y rounded-lg bg-slate-800 shadow ${sort ? "block" : "hidden"}`}
       >
-        <ul className="py-2 text-sm" aria-labelledby="sort-menu">
-          <Selection value={SortSelection.Popularity} />
-          <Selection value={SortSelection.Recent} />
-          <Selection value={SortSelection.Rating} />
+        <ul
+          className="py-2 text-sm"
+          aria-labelledby="sort-menu"
+          role="menu"
+          aria-orientation="vertical"
+        >
+          <Selection id="sort-menu-item-0" value={SortSelection.Popularity} />
+          <Selection id="sort-menu-item-1" value={SortSelection.Recent} />
+          <Selection id="sort-menu-item-2" value={SortSelection.Rating} />
         </ul>
       </div>
     </div>
   );
 }
 
-function Selection({ value }: { value: string }) {
+function Selection({ value, id }: { value: string; id: string }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -65,7 +71,13 @@ function Selection({ value }: { value: string }) {
     <li
       className={`flex w-full items-center justify-between px-4 py-2 hover:bg-slate-900`}
     >
-      <button onClick={handleSelectClick} type="button" className="flex flex-1">
+      <button
+        onClick={handleSelectClick}
+        type="button"
+        className="flex flex-1"
+        role="menuitem"
+        id={id}
+      >
         {value}
       </button>
     </li>

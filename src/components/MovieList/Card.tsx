@@ -5,6 +5,7 @@ import { Movie } from "@/lib/types";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import StarRating from "../Rating/Star";
+import Image from "next/image";
 
 const MovieCard = ({ movie }: { movie: Movie }) => {
   const overview = movie.overview;
@@ -13,7 +14,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
   const backdrop = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}`
     : movie.poster_path
-      ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
+      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
       : null;
 
   const pathname = usePathname();
@@ -38,11 +39,19 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         }
         aria-label="movie"
         className={`group relative h-40 w-full cursor-pointer overflow-hidden rounded-md 
-        ${!backdrop ? "bg-gray/25" : "bg-cover bg-center bg-no-repeat "}`}
-        style={{
-          backgroundImage: backdrop ? `url(${backdrop})` : "",
-        }}
+        ${!backdrop && "bg-gray/25"}`}
       >
+        {backdrop && (
+          <Image
+            unoptimized
+            fill
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            aria-label={movie.title + " image"}
+            alt="movie"
+            src={backdrop}
+          />
+        )}
+
         <div
           className={`absolute bottom-0  size-full flex-col gap-2 bg-black/40  p-4 text-start group-hover:flex ${!backdrop ? "flex" : "hidden"}`}
         >

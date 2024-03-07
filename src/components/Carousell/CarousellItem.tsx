@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function CarousellItem({
@@ -15,12 +16,14 @@ function CarousellItem({
 }) {
   const shortedOverview = movie.overview.substring(0, 100) + "...";
   return (
-    <div
-      className="relative flex h-auto rounded-xl bg-cover bg-top bg-no-repeat px-10 py-12 md:h-lg md:py-0"
-      style={{
-        backgroundImage: `url('https://image.tmdb.org/t/p/w780${movie.backdrop_path}')`,
-      }}
-    >
+    <div className="relative flex h-auto rounded-xl px-10 py-12 md:h-lg md:py-0">
+      <Image
+        unoptimized
+        src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+        alt="movie"
+        fill
+        style={{ objectFit: "cover", objectPosition: "top" }}
+      />
       <div className="absolute inset-0 h-full bg-gradient-to-r from-black" />
       <div className="z-10 my-auto flex h-full max-w-sm flex-col items-start justify-center gap-2 text-white  md:h-3/4 md:gap-5">
         <h2 className="text-sm font-semibold md:text-semiXl">{`#${index + 1} Most popular`}</h2>
