@@ -16,12 +16,13 @@ function CarousellItem({
 }) {
   const shortedOverview = movie.overview.substring(0, 100) + "...";
   return (
-    <div className="relative flex h-auto rounded-xl px-10 py-12 md:h-lg md:py-0">
+    <div className="relative flex h-auto px-10 py-12 md:h-lg md:py-0">
       <Image
         unoptimized
         src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
         alt="movie"
         fill
+        className="rounded-md md:rounded-xl"
         style={{ objectFit: "cover", objectPosition: "top" }}
       />
       <div className="absolute inset-0 h-full bg-gradient-to-r from-black" />

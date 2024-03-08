@@ -33,6 +33,9 @@ function Navbar() {
               <Link href="/">Home</Link>
             </NavItem>
             <NavItem>
+              <Link href="/saved">Saved</Link>
+            </NavItem>
+            <NavItem>
               <Link href="#movies">Movies</Link>
             </NavItem>
             <DropDownToggler />

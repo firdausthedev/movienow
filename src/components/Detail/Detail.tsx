@@ -66,7 +66,7 @@ export default function DetailModal() {
         </div>
 
         {error && <p className="text-white">{error}</p>}
-        {movie && movie && <Content movie={movie} />}
+        {movie && <Content movie={movie} />}
       </div>
     </div>
   );

@@ -19,6 +19,7 @@
 - Sort movies by popularity, release date, and rating
 - Search movies by title
 - Display a modal with movie details
+- Save favorite movies to local storage
 - Desktop and mobile responsive
 
 ## Screenshot

@@ -17,6 +17,7 @@ const config: Config = {
         gray: "#aaaaaa",
         darkBlue: "#191e25",
         charcoal: "#33373d",
+        accent: "#1a98ff",
       },
       fontFamily: {
         primary: ["var(--font-primary)", "sans-serif"],

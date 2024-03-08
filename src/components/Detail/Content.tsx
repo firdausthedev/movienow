@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaPlay } from "react-icons/fa6";
 import styles from "./content.module.css";
 import Recommendation from "./Recommendation";
+import SavedIcon from "./SavedIcon";
 
 export function Content({ movie }: { movie: Detail }) {
   const poster = movie.poster_path
@@ -19,13 +20,14 @@ export function Content({ movie }: { movie: Detail }) {
     <div className="flex flex-col gap-3 overflow-y-auto pb-10">
       <Poster poster={poster} />
       <div className="flex flex-col gap-1">
-        <h2 className="text-semiXl font-semibold">
+        <h2 className="flex gap-1 text-semiXl font-semibold">
           {movie.title}{" "}
           {movie.release_date && (
             <span className="text-gray">
               ({movie.release_date.split("-")[0]})
             </span>
           )}
+          <SavedIcon movie={movie} />
         </h2>
         {movie.vote_average > 0 && (
           <div className="flex items-center gap-1">

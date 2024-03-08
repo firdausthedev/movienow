@@ -1,6 +1,7 @@
 import {
   Detail,
   GenreResponse,
+  Movie,
   MovieCredits,
   MoviesResponse,
   SortSelection,
@@ -80,4 +81,18 @@ export const getMoviesByPersonId = async (id: string, page: string = "1") => {
   );
   const data = await res.json();
   return data as MovieCredits;
+};
+
+export const getSavedMovies = () => {
+  try {
+    const savedMovies = localStorage.getItem("savedMovies");
+    if (savedMovies) {
+      return JSON.parse(savedMovies) as Movie[];
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error parsing saved movies:", error);
+    return null;
+  }
 };
