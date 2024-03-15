@@ -15,6 +15,10 @@ const primary = Merriweather_Sans({
 export const metadata: Metadata = {
   title: "movienow",
   description: "A demo movies app build with TMDB api",
+  robots: {
+    follow: false,
+    index: false,
+  },
 };
 
 export default function RootLayout({
