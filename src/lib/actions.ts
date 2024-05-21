@@ -42,7 +42,6 @@ export const getMovies = async (
 
   const res = await fetch(
     `https://api.themoviedb.org/3/discover/movie?page=${page + FILTER + sort + genres + API}`,
-    { next: { revalidate: 86400 } },
   );
   const data = await res.json();
   return data as MoviesResponse;
@@ -52,7 +51,6 @@ export const getMoviesCarousel = async (genre: string) => {
   const genres = genre ? `&with_genres=${genre}` : "";
   const res = await fetch(
     `https://api.themoviedb.org/3/discover/movie?page=1${FILTER + DEFAULT_SORT + genres + API}`,
-    { next: { revalidate: 86400 } },
   );
   const data: MoviesResponse = await res.json();
   return data.results.slice(0, 4);

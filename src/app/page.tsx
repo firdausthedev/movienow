@@ -2,6 +2,9 @@ import Carousell from "@/components/Carousell/Carousell";
 import MovieList from "@/components/MovieList/List";
 import { getMovies, getMoviesCarousel } from "@/lib/actions";
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic'
+
 export default async function Home({
   searchParams,
 }: {
